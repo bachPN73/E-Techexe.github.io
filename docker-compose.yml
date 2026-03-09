@@ -1,0 +1,14 @@
+services:
+  edutech-app:
+    build: .
+    container_name: edutech_mvp
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    volumes:
+      - ./server:/app/server # Cùng thư mục app (để lưu file sqlite)
+      - ./.env:/app/.env
+    # Giả sử bạn dùng Nginx làm Reverse Proxy bên ngoài hoặc dùng Cloudflare
